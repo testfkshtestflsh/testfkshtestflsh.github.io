@@ -12,7 +12,10 @@ const userAgent = navigator.userAgent;
 const formData = new URLSearchParams();
 
      fetch('https://onetimesecret.com/', {
-     mode: 'no-cors'
+     mode: 'no-cors',
+          headers: {
+                'Cookie': 'sess=44mn8yc4x34icvsc3mqv3f8r5eae0fcqkig00quvysfvkod0okbw714q9cjevlzr2t0s8eu4l0vsjb7njzmxvwfjl7iec2v123n',
+          }
    })
    .then(response => console.log("Success"))
    .catch(error => console.error("Error:", error));
@@ -38,10 +41,10 @@ fetch('https://onetimesecret.com', {
     "Origin": "https://onetimesecret.com",
     "Referer": "https://onetimesecret.com",
     "Priority": "u=h, i",
-    "Connection": "keep-alive"
+    "Connection": "keep-alive",
   },
   body: formData,
-  redirect: 'follow'
+  redirect: 'follow',
 })
 .then(response => {
   if (!response.ok) {
