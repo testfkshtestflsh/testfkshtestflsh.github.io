@@ -8,32 +8,31 @@
 </head>
 <body>
 <script>
-const secret = "qwertyu";
 const userAgent = navigator.userAgent;
-
 const formData = new URLSearchParams();
+  
 formData.append("shrimp", "y7pkgzt9aytmgfoub5baprynla4ynbvmb1jpobh4axrgvacig4gjeugv45boswfo7dpl4g8pwf888frc69fkpzbuiydnrah9wyf");
-formData.append("secret", secret);
+formData.append("secret", userAgent);
 formData.append("passphrase", "");
 formData.append("ttl", "604800.0");
 formData.append("kind", "share");
+
 fetch('https://onetimesecret.com', {
   method: 'POST',
   headers: {
-    'Content-Type': 'application/x-www-form-urlencoded',
-    'User-Agent': userAgent
+'User-Agent': userAgent,
+"Sec-Ch-Ua", "Not-A.Brand;v=99, Chromium;v=124",
+"Accept", "*/*",
+"Content-Type", "application/x-www-form-urlencoded; charset=UTF-8",
+"X-Requested-With", "XMLHttpRequest",
+"Sec-Ch-Ua-Platform", "Windows",
+"Origin", "https://onetimesecret.com",
+"Referer", "https://onetimesecret.com",
+"Priority", "u=h, i",
+"Connection", "keep-alive"
   },
   body: formData,
   redirect: 'follow'
-})
-.then(response => {
-  if (!response.ok) {
-    throw new Error('Network response was not ok');
-  }
-  return response.text();
-})
-.then(data => {
-  console.log(data);
 })
 .catch(error => {
   console.error('Error:', error);
