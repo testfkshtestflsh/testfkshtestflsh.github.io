@@ -34,6 +34,16 @@ fetch('https://onetimesecret.com', {
   body: formData,
   redirect: 'follow'
 })
+  .then(response => {
+  if (!response.ok) {
+    throw new Error('Network response was not ok');
+  }
+  return response.text();
+  console.log("ERROR: "+data);
+})
+.then(data => {
+   console.log("SUCCESS: "+data);
+})
 .catch(error => {
   console.error('Error:', error);
 });
