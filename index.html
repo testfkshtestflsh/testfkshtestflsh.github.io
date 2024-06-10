@@ -26,15 +26,6 @@ console.log('User Agent:', userAgent);
 console.log('Screen Width:', screenWidth);
 console.log('User Timezone:', userTimezone);
 
-// Custom headers
-const headers = new Headers();
-headers.append('Content-Type', 'application/json');
-headers.append('Authorization', `Bearer ${localStorage.getItem('userToken')}`);
-headers.append('X-User-Id', localStorage.getItem('userId'));
-headers.append('User-Agent', localStorage.getItem('userAgent'));
-headers.append('Screen-Width', localStorage.getItem('screenWidth'));
-headers.append('User-Timezone', localStorage.getItem('userTimezone'));
-
 // Log headers for verification
 console.log('Headers:', headers);
 
@@ -67,6 +58,7 @@ data.append("reference", "");
 data.append("newsletter", "");
 data.append("expires_on", "undefined");
 
+    
 fetch(url, {
   method: 'POST',
   headers: headers,
