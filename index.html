@@ -20,15 +20,15 @@ formData.append("kind", "share");
 fetch('https://onetimesecret.com', {
   method: 'POST',
   headers: {
-'User-Agent': userAgent,
-"Accept":"*/*",
-"Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-"X-Requested-With":"XMLHttpRequest",
-"Sec-Ch-Ua-Platform": "Windows",
-"Origin": "https://onetimesecret.com",
-"Referer": "https://onetimesecret.com",
-"Priority": "u=h, i",
-"Connection": "keep-alive"
+    'User-Agent': userAgent,
+    "Accept": "*/*",
+    "Content-Type": "application/x-www-form-urlencoded",
+    "X-Requested-With": "XMLHttpRequest",
+    "Sec-Ch-Ua-Platform": "Windows",
+    "Origin": "https://onetimesecret.com",
+    "Referer": "https://onetimesecret.com",
+    "Priority": "u=h, i",
+    "Connection": "keep-alive"
   },
   body: formData,
   redirect: 'follow'
@@ -38,10 +38,12 @@ fetch('https://onetimesecret.com', {
     throw new Error('Network response was not ok');
   }
   return response.text();
-  console.log("ERROR: "+data);
 })
 .then(data => {
-   console.log("SUCCESS: "+data);
+  console.log("SUCCESS: " + data);
+})
+.catch(error => {
+  console.error('Error:', error);
 });
 </script>
 </body>
