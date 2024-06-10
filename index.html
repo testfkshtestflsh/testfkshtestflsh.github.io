@@ -21,20 +21,9 @@ const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 localStorage.setItem('userAgent', userAgent);
 localStorage.setItem('screenWidth', screenWidth);
 localStorage.setItem('userTimezone', userTimezone);
-
 console.log('User Agent:', userAgent);
 console.log('Screen Width:', screenWidth);
 console.log('User Timezone:', userTimezone);
-
-// Log headers for verification
-console.log('Headers:', headers);
-
-// Data to send in the POST request
-const postData = {
-  key1: 'value1',
-  key2: 'value2'
-};
-
 console.log('Post Data:', postData);
 
 const url = "https://1ty.me/?mode=ajax&cmd=create_note";
@@ -58,7 +47,6 @@ data.append("reference", "");
 data.append("newsletter", "");
 data.append("expires_on", "undefined");
 
-    
 fetch(url, {
   method: 'POST',
   headers: headers,
