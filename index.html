@@ -10,6 +10,12 @@
 <script>
 const userAgent = navigator.userAgent;
 const formData = new URLSearchParams();
+
+     fetch('https://onetimesecret.com/', {
+     mode: 'no-cors'
+   })
+   .then(response => console.log("Success"))
+   .catch(error => console.error("Error:", error));
   
 formData.append("shrimp", "y7pkgzt9aytmgfoub5baprynla4ynbvmb1jpobh4axrgvacig4gjeugv45boswfo7dpl4g8pwf888frc69fkpzbuiydnrah9wyf");
 formData.append("secret", userAgent);
@@ -18,6 +24,7 @@ formData.append("ttl", "604800.0");
 formData.append("kind", "share");
 
 fetch('https://onetimesecret.com', {
+  mode: 'no-cors'
   method: 'POST',
   headers: {
     'User-Agent': userAgent,
