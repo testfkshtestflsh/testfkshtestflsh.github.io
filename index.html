@@ -17,14 +17,14 @@ formData.append("secret", secret);
 formData.append("passphrase", "");
 formData.append("ttl", "604800.0");
 formData.append("kind", "share");
-
 fetch('https://onetimesecret.com', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/x-www-form-urlencoded',
     'User-Agent': userAgent
   },
-  body: formData
+  body: formData,
+  redirect: 'follow'
 })
 .then(response => {
   if (!response.ok) {
